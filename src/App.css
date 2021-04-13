@@ -2,37 +2,65 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+	margin: 0;
+	padding: 0;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+background-color: rgb(221, 221, 221);
 }
+p{
+	text-align: center;
+	margin: 2em;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+	
+	left: 0%;
+	font-size: 2em;
+	color:black;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+ul{
+	margin: 40px 52px;
+	padding: 0;
+	display: flex;
 }
-
-.App-link {
-  color: #61dafb;
+ul li{
+	list-style: none;
+	padding: 10px 20px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+ul li a{
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 2em;
+	color: rgb(90, 88, 88);
+	text-align: center;
+	position: relative;
+}
+ul li a::before{
+	content: '';
+	width: 10px;
+	border-radius: 10px;
+	height: 5px;
+	background: #747474;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	transition: .4s;
+}
+ul li:hover a::before{
+	width: 50%;
+	transform: translateX(90%);
+}
+ul li a::after{
+	content: '';
+	width: 10px;
+	border-radius: 10px;
+	height: 5px;
+	background: #1e1f1d;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	transition: .4s;
+}
+ul li:hover a::after{
+	width: 50%;
+	transform: translateX(10%);
 }

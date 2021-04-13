@@ -1,0 +1,11 @@
+{
+    "AppSyncApiName": "year4app",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authyear4appe561959f",
+            "Outputs.UserPoolId"
+        ]
+    }
+}
