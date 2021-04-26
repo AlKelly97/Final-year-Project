@@ -2,7 +2,7 @@
 import React, {Component} from 'react'
 import Axios from 'axios';
 import Select from 'react-select'
-import NewsList from './components/NewsList';
+import NewsList from './NewsList';
 
 export default class News extends Component {
 //Using a constructor to handle state management when rendering the browser.
@@ -15,7 +15,7 @@ export default class News extends Component {
     }
     //Similar to the NewsList component, where we use an Axios get request to fetch our data
     async getArticles() {
-        const res = await Axios.get('http://newsapi.org/v2/everything?q=coronavirus&domains=thesun.co.uk,irishtimes.com&pageSize=20&apiKey=d8e5c413969144569184d0a7433888b8')
+        const res = await Axios.get('https://newsapi.org/v2/everything?q=coronavirus&domains=thesun.co.uk,irishtimes.com&pageSize=20&apiKey=d8e5c413969144569184d0a7433888b8')
         const articles = res.data.articles
 
         //Mapping our data to local variables.
@@ -26,9 +26,6 @@ export default class News extends Component {
             "link": d.url,
             "photo": d.urlToImage,
             "source": d.source.name
-
-
-
         }))
 
         this.setState({
@@ -70,7 +67,7 @@ export default class News extends Component {
 </nav>
 
           
-    <Select options={this.state.selectArticles} onChange={this.handleChange.bind(this)} />
+    <Select options={this.state.selectArticles} placeholder = "Select A News Article" onChange={this.handleChange.bind(this)} />
          <p><u><strong>{this.state.source}</strong></u></p>
 
          <p><strong>{this.state.title}</strong></p>

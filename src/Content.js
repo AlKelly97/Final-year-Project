@@ -2,8 +2,16 @@ import React, {Component} from 'react';
 import './App.css';
 //import update from 'react-addons-update';
 import  {API, graphqlOperation } from 'aws-amplify';
+import { withAuthenticator,AmplifySignOut } from '@aws-amplify/ui-react'
 import * as queries from './graphql/queries';
 import * as mutations from './graphql/mutations';
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Link from '@material-ui/core/Link';
+
+
 //import App from './App';
 
 
@@ -22,10 +30,13 @@ class fetchBlog extends Component{
         this.handleDeleteBlog = this.submit.bind(this);
         this.handleUpdatePost = this.handleUpdatePost.bind(this);
       
-        
+      
         
 
   }
+
+  
+
 
   handleChange(blogId, event) {
     this.setState({[blogId]:event.target.value });
@@ -115,42 +126,61 @@ render() {
         <li><a href="/Posts">Discussions</a></li>
     </ul>
         </nav>
-         <h3>{this.state.blogs.data.getBlog.name}</h3>
-           
-        
 
-        <div>
+        <AmplifySignOut button-text="Custom Text"></AmplifySignOut>
+    
+
+        <Breadcrumbs aria-label="breadcrumb">
+      <Link color="inherit" href="/" >
+        Home
+      </Link>
+      <Link color="inherit" href="/Posts">
+        Posts
+      </Link>
+      <Typography color="textPrimary">Post Content</Typography>
+    </Breadcrumbs>
+<div className = " postHeading ">
+         <h2>{this.state.blogs.data.getBlog.name}</h2>
+           </div>
+
+        <div className = "Post-content">
             {this.state.blogs.data.getBlog.posts.items.map(grabPost => 
                                     <li key ={grabPost.id}> <br>
-                                        </br><h2>{grabPost.title}</h2>
-                                        
-                                        <h4>Update this post!</h4>
-          <input
+                                        </br><h3>{grabPost.title}</h3>
+        <div className = "FormInput">                              
+                                       
+          <TextField
+           
               title="title"
-              placeholder="Enter a title!"
+              placeholder="Update/Edit your Post!"
+             
               onChange={(event) => {this.handleChange('title',event)}}
           />
+        
           
-          
-          <button variant = "success" value ={grabPost.id} onClick={() => {this.handleUpdatePost(grabPost)}}>
+          <Button variant = "outlined" value ={grabPost.id} onClick={() => {this.handleUpdatePost(grabPost)}}>
             Update Post
-          </button>
+          </Button>
                                          
-          <button variant="danger" value= {grabPost.id} onClick={this.handleDeletePost}>Delete Post</button> 
-                                             
-                                    </li> )}
-        <div>
-
+          <button style={styles.button}onClick={this.handleDeletePost} value={grabPost.id} variant="outlined">DELETE BLOG</button>                                             
+                                 
+          </div>     
+          </li> 
+          )
+          }
+                                    
+        <div className ="AddPostInput">
+       
       
        <h4>Add a post to this blog!</h4>
-          <input
+          <TextField
               title="title"
               placeholder="Enter a title!"
               onChange={(event) => {this.handleChange('title',event)}}
           />
-          <button value = {this.props.match.params.account} onClick={this.submit}>
+          <Button value = {this.props.match.params.account} onClick={this.submit} variant = "outlined">
             Add
-          </button>
+          </Button>
          
                                    
 </div>
@@ -169,6 +199,11 @@ render() {
   return <h3>Loading..</h3>;
 
 }
+
+}
+
+const styles={
+  button: { backgroundColor: "Transparent", color: 'Black', fontSize: 15, padding: '7px 0px', borderRadius: '4px'}
 
 }
 export default (fetchBlog)

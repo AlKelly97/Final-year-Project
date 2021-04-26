@@ -3,17 +3,27 @@ import React, { useState, useEffect } from 'react'
 import { listBlogs } from './graphql/queries'
 import { createBlog, deleteBlog } from './graphql/mutations'
 import { withAuthenticator,AmplifySignOut } from '@aws-amplify/ui-react'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Link from '@material-ui/core/Link';
+import './App.css'
+
 
 
 const initialState = {
     name: ''
 }
 
+
+
+
 const Posts = () => {
         const [formState, setFormState] = useState(initialState)
         const [Blog, setBlogs] = useState([])
         const [Blogs, SetBlogs] = useState([])
-
+        
         useEffect(() => {
             fetchBlogs()
         }, [])
@@ -55,7 +65,7 @@ const Posts = () => {
             } catch (err) {
                 console.log('error creating Blog Post:', err)
             }
-            window.location.reload()
+           window.location.reload()
         }
 
 
@@ -68,12 +78,14 @@ const Posts = () => {
                 }
             }));
             console.log(DeleteBlog)
-            //window.location.reload()
+            window.location.reload()
         }
 
     return (
         
         <div>
+                    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap" rel="stylesheet"></link>
+
               <nav>
         <ul>
         <li><a href="/">Home</a></li>
@@ -85,33 +97,58 @@ const Posts = () => {
 
 
             <AmplifySignOut button-text="Custom Text"></AmplifySignOut>
+
+            <Breadcrumbs aria-label="breadcrumb">
+      <Link color="inherit" href="/" >
+        Home
+      </Link>
+     
+      <Typography color="textPrimary">Posts</Typography>
+    </Breadcrumbs>
+
     {
         Blogs.map((Blog, index) => (
 
-        <div> 
+        <div className='contentContainer'> 
                 <li key={Blog.id ? Blog.id : index}>
-                        {Blog.name}
+                        <h2>{Blog.name}</h2>
                 </li>
-                
-                <a href={`Content/${Blog.id}`}>click me</a>
+              <div className = "Buttons">
+                <Button  variant="outlined" href={`Content/${Blog.id}`}>View Content</Button>
+                <button style={styles.button}value= {Blog.id} variant="outlined" onClick={removeBlog}>DELETE BLOG</button>       
 
-                <button variant="danger" value= {Blog.id} onClick={removeBlog}>Delete Blog</button> 
+               
+               </div> 
         </div>
+        
           
     )
     )
     }
-       <input
+   
+    <div className = "FormInput">
+      <TextField id="filled-basic" label="Add A Blog!" variant = "filled"
 
         onChange={event => setInput('name', event.target.value)}
         /* Add in some style for the form inputs?? */
         value={formState.name}
         placeholder="Name"
-      />
-        <button onClick={addBlog}>Create Blog</button>
+        
+      >
+        </TextField>      
+        <Button variant="outlined" onClick={addBlog}>Create Blog</Button>
+      
+        </div>
+        
         </div>
     )
 }
+
+
+const styles={
+    button: { backgroundColor: "Transparent", color: 'Black', fontSize: 15, padding: '7px 0px', borderRadius: '4px'}
+            
+            }
 
 export default withAuthenticator (Posts)
 

@@ -1,6 +1,6 @@
 //Importing the necessary dependancies for the project
 import './App.css';
-import NewsList from './components/NewsList';
+import NewsList from './NewsList';
 import $ from "jquery"
 import React from 'react'
 
@@ -35,21 +35,19 @@ function App() {
 
         </header>
         <body>
-          <p>
-            CoronaVirus
-          </p>
+         
+<div className="cases">
 
-
-<div>
-  <h3>Ireland Case stats</h3>
-        <p class="Confirmed"></p>
-        <p class="Deaths"></p>
-        <p class="Recovered"></p>
+       <div id="left"> <p class="Confirmed"></p></div>
+      <div id="center"> <p class="Deaths"></p></div>
+      <div id="right"> <p class="Recovered"></p></div>
 </div>
 
           {/*Calls the NewsList Component and displays it all from the below tag.*/}
           <NewsList/>
           
+
+
           </body>
        
      
