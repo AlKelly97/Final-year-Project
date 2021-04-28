@@ -2,8 +2,6 @@
   text-align: center;
 }
 
-
-
 body{
 	margin: 0;
 	padding: 0;
@@ -14,9 +12,7 @@ background-color: rgb(221, 221, 221);
 p{
 	text-align: center;
 	margin: 2em;
-
-	
-	left: 0%;
+  left: 0%;
 	font-size: 2em;
 	color:black;
 }
@@ -118,14 +114,16 @@ ul li:hover a::after{
 }
 
 .news-item{
-  width:500px;
+  width:650px;
   padding: 20px;
-  border: 25px;
+  border: 50px;
   margin-bottom: 20px;
+  float: right;
 }
 
 .news-img{
-  width: 400px
+  width: 400px;
+  
 }
 
 div.contentContainer{
@@ -209,4 +207,8 @@ div.postHeading{
   border-style: ridge;
   border-color: #747474;
   border-radius: 25px;
+}
+
+.news-item h3{
+  margin-left: 12%;
 }

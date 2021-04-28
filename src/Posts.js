@@ -90,7 +90,7 @@ const Posts = () => {
         <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/News">News</a></li>
-        <li><a href="tips.html">Lockdown Tips</a></li>
+       
         <li><a href="/Posts">Discussions</a></li>
     </ul>
         </nav>

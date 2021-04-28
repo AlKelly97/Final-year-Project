@@ -12,6 +12,7 @@ code {
     monospace;
 }
 
-body.twitter-timelines{
-  float: right;
+a.twitter-timeline{
+  margin-left: 50%;
 }
+

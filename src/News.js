@@ -2,7 +2,8 @@
 import React, {Component} from 'react'
 import Axios from 'axios';
 import Select from 'react-select'
-import NewsList from './NewsList';
+import NewsCall from './NewsCall';
+import './App.css'
 
 export default class News extends Component {
 //Using a constructor to handle state management when rendering the browser.
@@ -59,7 +60,6 @@ export default class News extends Component {
 
             <li><a href="/">Home</a></li>
             <li><a href="/news">News</a></li>
-            <li><a href="tips.html">Lockdown Tips</a></li>
             <li><a href="/Posts">Discussions</a></li>
 
     </ul>
@@ -79,7 +79,7 @@ export default class News extends Component {
          <p>{this.state.url}</p>
       
 
-      <NewsList/>
+      <NewsCall/>
 
         </div>
       )
